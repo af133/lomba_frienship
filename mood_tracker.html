@@ -32,6 +32,8 @@
     <meta name="twitter:card" content="summary_large_image" />
 
     <!-- Favicon for Browser Tab -->
+      <script src="https://cdn.tailwindcss.com"></script>
+
     <link rel="icon" href="assets/icons/money-mood.svg" type="image/svg+xml" />
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -91,7 +93,8 @@
                     <img class="h-8 w-8 rounded-full" src="asset/profile.png" alt="Profile" />
                 </button>
                 <p>Hallo, Fauzul</p>
-                <button class="h-8 w-8 rounded-full"><a href=""><img src="asset/logout.png" alt="#"></a></button>
+              <button class="h-8 w-8 rounded-full"><a href="index.html"><img src="asset/logout.png" alt="#"></a>
+                </button>
             </div>
             <div x-show="profileOpen" @click.outside="profileOpen = false" x-transition
                  class="absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg py-2 z-50">

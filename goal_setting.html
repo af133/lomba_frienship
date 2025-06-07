@@ -37,6 +37,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         .progress-bar-bg {
@@ -94,13 +95,15 @@
                     <img class="h-8 w-8 rounded-full" src="asset/profile.png" alt="Profile" />
                 </button>
                 <p>Hallo, Fauzul</p>
-                <button class="h-8 w-8 rounded-full"><a href=""><img src="asset/logout.png" alt="#"></a></button>
+                <button class="h-8 w-8 rounded-full"><a href="index.html"><img src="asset/logout.png" alt="#"></a>
+                </button>
             </div>
             <div x-show="profileOpen" @click.outside="profileOpen = false" x-transition
                  class="absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg py-2 z-50">
               <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Your Profile</a>
               <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
-              <a href="index.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
+              <a href="index.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                Sign out</a>
             </div>
           </div>
         </div>
@@ -176,7 +179,9 @@
                         <p class="text-sm text-blue-600 font-medium">20 Hari Lagi! <span class="text-black">Yuk tabung sekarang</span> </p>
                         <a href="form_setor_tabungan.html">
                             <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
-                                Yuk Nabung
+                                <a href="form_setor_tabungan.html">
+                                    Yuk Nabung
+                                </a>
                             </button>
                         </a>
                     </div>
@@ -204,7 +209,9 @@
                     <div class="flex items-center justify-between">
                         <p class="text-sm text-blue-600 font-medium">40 Hari Lagi!  <span class="text-black">Yuk tabung sekarang</span> </p>
                         <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
-                            Yuk Nabung
+                            <a href="form_setor_tabungan.html">
+                                    Yuk Nabung
+                                </a>
                         </button>
                     </div>
                 </div>
@@ -231,7 +238,9 @@
                     <div class="flex items-center justify-between">
                         <p class="text-sm text-blue-600 font-medium">60 Hari Lagi!  <span class="text-black">Yuk tabung sekarang</span> </p>
                         <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
-                            Yuk Nabung
+                            <a href="form_setor_tabungan.html">
+                                    Yuk Nabung
+                                </a>
                         </button>
                     </div>
                 </div>
@@ -244,22 +253,13 @@
                     <h3 class="text-lg font-semibold text-gray-900">Progress Terbaru Anda</h3>
                 </div>
                 
-                <div class="flex items-center justify-center mb-8">
+                <div class="flex items-center justify-center mt-6">
                     <div class="relative">
-                        <canvas id="progressChart" width="200" height="200"></canvas>
-                        <div class="absolute inset-0 flex flex-col items-center justify-center">
-                            <p class="text-sm text-gray-600 mb-1">Membeli Laptop ROG</p>
-                            <p class="text-2xl font-bold text-gray-900">Rp12.500.000</p>
-                        </div>
+                        <img src="assets/photos/poto.png" alt="">
                     </div>
                 </div>
                 
-                <div class="text-center">
-                    <p class="text-sm text-gray-600 leading-relaxed">
-                        <span class="font-semibold text-blue-600">Rp3.500.000,00</span> lagi<br>
-                        menuju tujuan impianmu
-                    </p>
-                </div>
+                
             </div>
         </div>
     </div>

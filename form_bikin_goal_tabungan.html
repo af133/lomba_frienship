@@ -30,6 +30,7 @@
         content="Kelola keuangan dengan cara yang menyenangkan! MoneyMood memanfaatkan mood Anda untuk mengelola pengeluaran dan merencanakan masa depan yang lebih cerah." />
     <meta name="twitter:image" content="assets/logos/money-mood.svg" />
     <meta name="twitter:card" content="summary_large_image" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <title>MoneyMood - Cerdas Mengelola Keuangan Sesuai Suasana Hati</title>
     <!-- Favicon for Browser Tab -->    
     <link rel="icon" href="assets/icons/money-mood.svg" type="image/svg+xml" />
@@ -64,7 +65,8 @@
                     <img class="h-8 w-8 rounded-full" src="asset/profile.png" alt="Profile" />
                 </button>
                 <p>Hallo, Fauzul</p>
-                <button class="h-8 w-8 rounded-full"><a href=""><img src="asset/logout.png" alt="#"></a></button>
+            <button class="h-8 w-8 rounded-full"><a href="index.html"><img src="asset/logout.png" alt="#"></a>
+                </button>
             </div>
             <div x-show="profileOpen" @click.outside="profileOpen = false" x-transition
                  class="absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg py-2 z-50">
@@ -168,9 +170,12 @@
 
                     <!-- Tombol Kembali dan Tetapkan Tujuan -->
                     <div class="flex justify-evenly items-center mt-6 gap-5">
-                        <button type="button"
-                            class="py-3 w-1/3 cursor-pointer text-sm bg-gray-300 text-[#34364A] rounded-full hover:bg-gray-400 transition-all">
+                        
+                        <button type="button" 
+                        class="py-3 w-1/3 cursor-pointer text-sm bg-gray-300 text-[#34364A] rounded-full hover:bg-gray-400 transition-all">
+                        <a href="goal_setting.html">
                             Kembali
+                        </a>
                         </button>
                         <button type="submit"
                             class="py-3 w-2/3 cursor-pointer text-sm bg-[#2447F9] text-white rounded-full hover:opacity-90 transition-all">
