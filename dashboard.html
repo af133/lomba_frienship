@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en" x-data="{ mobileMenuOpen: false, profileOpen: false }">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/src/output.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet" />
+    <!-- Meta Tags for SEO -->
+    <meta name="description"
+        content="MoneyMood - Kelola Keuangan dan Mood Anda dengan Cerdas. Temukan cara baru untuk mengontrol pengeluaran berdasarkan suasana hati Anda!" />
+    <meta name="keywords"
+        content="MoneyMood, keuangan, mood, pengeluaran, kontrol, budgeting, finansial, ekonomi, psikologi keuangan" />
+    <meta name="author" content="MoneyMood Team" />
+
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta property="og:title" content="MoneyMood - Keuangan Sesuai Mood" />
+    <meta property="og:description"
+        content="Kelola keuangan dengan cara yang menyenangkan! MoneyMood memanfaatkan mood Anda untuk mengelola pengeluaran dan merencanakan masa depan yang lebih cerah." />
+    <meta property="og:image" content="assets/icons/money-mood.svg" />
+    <meta property="og:url" content="https://lomba-frienship.vercel.app/" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:title" content="MoneyMood - Keuangan Sesuai Mood" />
+    <meta name="twitter:description"
+        content="Kelola keuangan dengan cara yang menyenangkan! MoneyMood memanfaatkan mood Anda untuk mengelola pengeluaran dan merencanakan masa depan yang lebih cerah." />
+    <meta name="twitter:image" content="assets/logos/money-mood.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Favicon for Browser Tab -->
+    <link rel="icon" href="assets/icons/money-mood.svg" type="image/svg+xml" />
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .gradient-blue {
+            background: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%);
+        }
+        .text-purple {
+            color: #8B5CF6;
+        }
+        .bg-purple-light {
+            background-color: #F3F4F6;
+        }
+        .progress-circle {
+            transform: rotate(-90deg);
+        }
+    </style>
+</head>
+
+<body style="font-family: 'Inter', sans-serif" class="text-[#34364A]">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md rounded-b-2xl mb-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+
+        <!-- Logo -->
+        <div class="flex-shrink-0 flex items-center">
+          <img class="h-8 w-auto" src="asset/logo.png" alt="Logo" />
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="hidden sm:flex sm:items-center space-x-6">
+          <a href="#" class="text-gray-800 hover:text-blue-600 font-medium">Home</a>
+          <a href="#" class="text-gray-800 hover:text-blue-600 font-medium">Mood Tracker</a>
+          <a href="#" class="text-gray-800 hover:text-blue-600 font-medium">Goal Setting</a>
+          <a href="#" class="text-gray-800 hover:text-blue-600 font-medium">History</a>
+        </div>
+
+        <!-- Profile (Desktop) -->
+        <div class="hidden sm:flex sm:items-center">
+          <div class="relative" x-data="{ profileOpen: false }">
+            <div class="flex items-center gap-x-2">
+
+                <button @click="profileOpen = !profileOpen" class="focus:outline-none">
+                    <img class="h-8 w-8 rounded-full" src="asset/profile.png" alt="Profile" />
+                </button>
+                <p>Hallo, Fauzul</p>
+                <button class="h-8 w-8 rounded-full"><a href=""><img src="asset/logout.png" alt="#"></a></button>
+            </div>
+            <div x-show="profileOpen" @click.outside="profileOpen = false" x-transition
+                 class="absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg py-2 z-50">
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Your Profile</a>
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hamburger (Mobile) -->
+        <div class="sm:hidden flex items-center">
+          <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-gray-600 focus:outline-none">
+            <svg x-show="!mobileMenuOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+              viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg x-show="mobileMenuOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+              viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div x-show="mobileMenuOpen" x-transition x-cloak class="sm:hidden px-4 pt-2 pb-4 space-y-2">
+      <a href="#" class="block text-gray-800 hover:text-blue-600 font-medium">Home</a>
+      <a href="#" class="block text-gray-800 hover:text-blue-600 font-medium">Mood Tracker</a>
+      <a href="#" class="block text-gray-800 hover:text-blue-600 font-medium">Goal Setting</a>
+      <a href="#" class="block text-gray-800 hover:text-blue-600 font-medium">History</a>
+      <hr class="border-gray-200" />
+      <a href="#" class="block text-gray-800 hover:text-blue-600 font-medium">Your Profile</a>
+      <a href="#" class="block text-gray-800 hover:text-blue-600 font-medium">Settings</a>
+      <a href="#" class="block text-gray-800 hover:text-blue-600 font-medium">Sign out</a>
+    </div>
+  </nav>
+  <h1 class="font-bold m-4 text-3xl" >Ringkasan Keuanganmu dalam Sekejap</h1>
+  <p class="m-4">Lihat saldo, lacak pengeluaran, dan tentukan tujuan keuangan dengan mudah. Semuanya ada di dashboard.</p>
+<div class="max-w-7xl mx-auto flex">
+    <div class="flex-1  ">
+        <!-- Header Stats -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+            <!-- Total Pengeluaran -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                        </svg>
+                    </div>
+                </div>
+                <p class="text-gray-500 text-sm mb-2">Total Pengeluaran<br>Bulan Ini</p>
+                <p class="text-2xl font-bold text-gray-900">Rp385.500</p>
+            </div>
+
+            <!-- Pengeluaran Terbesar -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
+                        <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                        </svg>
+                    </div>
+                </div>
+                <p class="text-gray-500 text-sm mb-2">Pengeluaran Terbesar<br>Anda Bulan Ini</p>
+                <p class="text-2xl font-bold text-gray-900">Rp250.000</p>
+            </div>
+
+            <!-- CTA Card -->
+            <div class="gradient-blue rounded-2xl p-6 text-white">
+                <h3 class="text-xl font-bold mb-4">Ingin Mencatat Pengeluaran?</h3>
+                <button id="recordBtn" class="bg-white text-blue-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors">
+                    Catat Sekarang!
+                </button>
+            </div>
+
+            <!-- Progress Tabungan -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm">
+                <p class="text-gray-500 text-sm mb-4">Statistics<br><span class="text-gray-900 font-semibold">Progress Tabungan</span></p>
+                <div class="relative w-24 h-24 mx-auto mb-4">
+                    <svg class="w-24 h-24 transform -rotate-90" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="40" stroke="#E5E7EB" stroke-width="8" fill="none"/>
+                        <circle cx="50" cy="50" r="40" stroke="#4F46E5" stroke-width="8" fill="none" 
+                                stroke-dasharray="251.2" stroke-dashoffset="175.84" stroke-linecap="round"/>
+                    </svg>
+                    <div class="absolute inset-0 flex-col text-center items-center justify-center">
+                        <p>Target</p>
+                        <span class="text-sm font-bold">Rp2.0000.000</span>
+                    </div>
+                </div>
+                <p class="text-center text-sm text-gray-600">Rp3.000.000</p>
+                <p class="text-center text-xs text-gray-400">Rp10.000.000.000 target dalam 10bulan</p>
+            </div>
+        </div>
+    </div>
+    <div class="flex-1">
+        <!-- Charts Section -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+            <!-- Monthly Spending Category -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm">
+                <p class="text-gray-500 text-sm mb-2">Statistics</p>
+                <h3 class="text-gray-900 font-semibold mb-6">Monthly spending category</h3>
+                <div class="relative">
+                    <canvas id="categoryChart" width="200" height="200"></canvas>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="text-center">
+                            <p class="text-xs text-gray-500">Category</p>
+                            <p class="text-xs text-gray-500">Spending</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-6 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 bg-blue-500 rounded-full mr-3"></div>
+                            <span class="text-sm text-gray-700">Makan</span>
+                        </div>
+                        <span class="text-sm font-semibold">90</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 bg-purple-300 rounded-full mr-3"></div>
+                            <span class="text-sm text-gray-700">Barang Mewah</span>
+                        </div>
+                        <span class="text-sm font-semibold">320</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 bg-purple-500 rounded-full mr-3"></div>
+                            <span class="text-sm text-gray-700">Hadiah</span>
+                        </div>
+                        <span class="text-sm font-semibold">340</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 bg-purple-200 rounded-full mr-3"></div>
+                            <span class="text-sm text-gray-700">Kebutuhan Harian</span>
+                        </div>
+                        <span class="text-sm font-semibold">500</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Spending by Mood -->
+            <div class="lg:col-span-2 bg-white rounded-2xl p-6 shadow-sm">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-gray-900 font-semibold">Spending by Mood</h2>
+                    <select id="moodPeriod" class="text-sm border border-gray-200 rounded-lg px-3 py-1">
+                        <option>Weekly</option>
+                        <option>Monthly</option>
+                        <option>Yearly</option>
+                    </select>
+                </div>
+                <div class="relative">
+                    <canvas id="moodChart" height="300"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script>
+        $(document).ready(function() {
+            // Record button click handler
+            $('#recordBtn').click(function() {
+                alert('Fitur pencatatan pengeluaran akan segera hadir!');
+            });
+
+            // Period selector change handler
+            $('#moodPeriod').change(function() {
+                const period = $(this).val();
+                console.log('Period changed to:', period);
+                // Here you would typically update the chart data
+            });
+
+            // Initialize Category Donut Chart
+            const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+            new Chart(categoryCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Makan', 'Barang Mewah', 'Hadiah', 'Kebutuhan Harian'],
+                    datasets: [{
+                        data: [11, 24, 29, 36],
+                        backgroundColor: [
+                            '#4F46E5',
+                            '#C4B5FD',
+                            '#7C3AED',
+                            '#E0E7FF'
+                        ],
+                        borderWidth: 0,
+                        cutout: '70%'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+
+            // Initialize Mood Bar Chart
+            const moodCtx = document.getElementById('moodChart').getContext('2d');
+            new Chart(moodCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Marah', 'Sedih', 'Netral', 'Senang', 'Luarbiasa'],
+                    datasets: [{
+                        label: 'Mood Spending',
+                        data: [1000, 800, 1200, 2000, 900],
+                        backgroundColor: [
+                            '#E0E7FF',
+                            '#E0E7FF',
+                            '#E0E7FF',
+                            '#4F46E5',
+                            '#E0E7FF',
+                        ],
+                        borderRadius: 8,
+                        borderSkipped: false,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: '#F3F4F6'
+                            },
+                            ticks: {
+                                color: '#9CA3AF',
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: '#9CA3AF',
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Add hover effects to cards
+            $('.bg-white').hover(
+                function() {
+                    $(this).addClass('shadow-lg').removeClass('shadow-sm');
+                },
+                function() {
+                    $(this).addClass('shadow-sm').removeClass('shadow-lg');
+                }
+            );
+
+            // Animate progress circle on load
+            setTimeout(function() {
+                $('.gradient-blue').addClass('animate-pulse');
+                setTimeout(function() {
+                    $('.gradient-blue').removeClass('animate-pulse');
+                }, 2000);
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
