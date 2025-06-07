@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en" x-data="{ mobileMenuOpen: false, profileOpen: false }">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -31,16 +30,46 @@
         content="Kelola keuangan dengan cara yang menyenangkan! MoneyMood memanfaatkan mood Anda untuk mengelola pengeluaran dan merencanakan masa depan yang lebih cerah." />
     <meta name="twitter:image" content="assets/logos/money-mood.svg" />
     <meta name="twitter:card" content="summary_large_image" />
-    <title>MoneyMood - Cerdas Mengelola Keuangan Sesuai Suasana Hati</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- Favicon for Browser Tab -->    
+
+    <!-- Favicon for Browser Tab -->
     <link rel="icon" href="assets/icons/money-mood.svg" type="image/svg+xml" />
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .progress-bar-bg {
+            background-color: #E5E7EB;
+            border-radius: 9999px;
+            height: 8px;
+        }
+        .progress-bar-fill {
+            background-color: #3B82F6;
+            border-radius: 9999px;
+            height: 8px;
+            transition: width 0.3s ease;
+        }
+        .gradient-blue {
+            background: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%);
+        }
+        .text-purple {
+            color: #8B5CF6;
+        }
+        .bg-purple-light {
+            background-color: #F3F4F6;
+        }
+        .progress-circle {
+            transform: rotate(-90deg);
+        }
+    </style>
 </head>
 
-<body style="font-family: 'Inter', sans-serif">
-    <!-- Navbar -->
-   <nav class="bg-white shadow-md rounded-b-2xl mb-6">
+<body style="font-family: 'Inter', sans-serif" class="text-[#34364A] bg-[#F6F8FD] ">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md rounded-b-2xl mb-6">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
 
@@ -66,14 +95,15 @@
                     <img class="h-8 w-8 rounded-full" src="asset/profile.png" alt="Profile" />
                 </button>
                 <p>Hallo, Fauzul</p>
-            <button class="h-8 w-8 rounded-full"><a href="index.html"><img src="asset/logout.png" alt="#"></a>
+                <button class="h-8 w-8 rounded-full"><a href="index.html"><img src="asset/logout.png" alt="#"></a>
                 </button>
             </div>
             <div x-show="profileOpen" @click.outside="profileOpen = false" x-transition
                  class="absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg py-2 z-50">
               <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Your Profile</a>
               <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
-              <a href="index.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
+              <a href="index.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                Sign out</a>
             </div>
           </div>
         </div>
