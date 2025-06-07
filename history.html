@@ -247,6 +247,59 @@
             <p class="text-xs text-gray-500">Sangat Senang</p>
           </div>
         </div>
+        <!-- Baris pengeluaran -->
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-4">
+            <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+              <img src="src/login/inconhistory.svg" alt="">
+            </div>
+            <div>
+              <p class="text-sm text-gray-500">Date</p>
+              <p class="font-semibold">18-05-2025</p>
+            </div>
+          </div>
+          <div class="flex space-x-10">
+            <div>
+              <p class="text-sm text-gray-500">Pengeluaran</p>
+              <p class="font-semibold">Rp200.000</p>
+            </div>
+            <div>
+              <p class="text-sm text-gray-500">Tujuan</p>
+              <p class="font-semibold">Hiburan</p>
+            </div>
+          </div>
+          <div class="flex flex-col items-center">
+            <span class="text-xl">😊</span>
+            <p class="text-xs text-gray-500">Sangat Senang</p>
+          </div>
+        </div>
+        <!-- Baris pengeluaran -->
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-4">
+            <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+              <img src="src/login/inconhistory.svg" alt="">
+            </div>
+            <div>
+              <p class="text-sm text-gray-500">Date</p>
+              <p class="font-semibold">18-05-2025</p>
+            </div>
+          </div>
+          <div class="flex space-x-10">
+            <div>
+              <p class="text-sm text-gray-500">Pengeluaran</p>
+              <p class="font-semibold">Rp200.000</p>
+            </div>
+            <div>
+              <p class="text-sm text-gray-500">Tujuan</p>
+              <p class="font-semibold">Hiburan</p>
+            </div>
+          </div>
+          <div class="flex flex-col items-center">
+            <span class="text-xl">😊</span>
+            <p class="text-xs text-gray-500">Sangat Senang</p>
+          </div>
+        </div>
+        
 
       </div>
     </div>
@@ -260,35 +313,54 @@
       </div>
 
       <!-- Placeholder Chart -->
-      <div class="bg-white rounded-xl p-6 shadow-md">
-        <h3 class="text-sm text-gray-500 mb-4">Spending by Mood</h3>
-        <div class="flex items-end space-x-4 h-40">
-          <!-- Bar 1 -->
-          <div class="flex flex-col items-center">
-            <div class="h-12 w-6 bg-blue-300 rounded-t"></div>
-            <span class="text-lg">😐</span>
-            <p class="text-xs">Netral</p>
-          </div>
-          <!-- Bar 2 -->
-          <div class="flex flex-col items-center">
-            <div class="h-20 w-6 bg-blue-300 rounded-t"></div>
-            <span class="text-lg">😢</span>
-            <p class="text-xs">Sedih</p>
-          </div>
-          <!-- Bar 3 -->
-          <div class="flex flex-col items-center">
-            <div class="h-32 w-6 bg-blue-500 rounded-t"></div>
-            <span class="text-lg">😄</span>
-            <p class="text-xs">Senang</p>
-          </div>
-          <!-- Bar 4 -->
-          <div class="flex flex-col items-center">
-            <div class="h-24 w-6 bg-blue-300 rounded-t"></div>
-            <span class="text-lg">😡</span>
-            <p class="text-xs">Marah</p>
-          </div>
-        </div>
-      </div>
+      <div class="bg-white rounded-2xl shadow-md p-6 w-full max-w-3xl mx-auto">
+  <div class="flex justify-between items-start mb-4">
+    <div>
+      <p class="text-sm text-gray-400 mb-1">Mood</p>
+      <h2 class="text-xl font-semibold text-gray-900">Spending by Mood</h2>
+    </div>
+    <button class="text-sm bg-gray-100 px-4 py-1 rounded-full hover:bg-gray-200">Monthly ▾</button>
+  </div>
+
+  <!-- Grafik Manual -->
+  <div class="relative h-64 flex items-end justify-between">
+    <!-- Bar 1 -->
+    <div class="flex flex-col items-center w-[15%]">
+      <span class="text-2xl mb-1">😠</span>
+      <div class="h-32 w-8 bg-indigo-100 rounded-t-md"></div>
+      <p class="text-sm mt-2 text-gray-500">Marah</p>
+    </div>
+    
+    <!-- Bar 2 -->
+    <div class="flex flex-col items-center w-[15%]">
+      <span class="text-2xl mb-1">😢</span>
+      <div class="h-20 w-8 bg-indigo-100 rounded-t-md"></div>
+      <p class="text-sm mt-2 text-gray-500">Sedih</p>
+    </div>
+
+    <!-- Bar 3 -->
+    <div class="flex flex-col items-center w-[15%]">
+      <span class="text-2xl mb-1">😐</span>
+      <div class="h-32 w-8 bg-indigo-100 rounded-t-md"></div>
+      <p class="text-sm mt-2 text-gray-500">Netral</p>
+    </div>
+
+    <!-- Bar 4 -->
+    <div class="flex flex-col items-center w-[15%]">
+      <span class="text-2xl mb-1">😊</span>
+      <div class="h-48 w-8 bg-blue-600 rounded-t-md"></div>
+      <p class="text-sm mt-2 text-gray-500">Senang</p>
+    </div>
+
+    <!-- Bar 5 -->
+    <div class="flex flex-col items-center w-[15%]">
+      <span class="text-2xl mb-1">😍</span>
+      <div class="h-28 w-8 bg-indigo-100 rounded-t-md"></div>
+      <p class="text-sm mt-2 text-gray-500">Luar Biasa</p>
+    </div>
+  </div>
+</div>
+
     </div>
   </div>
     </section>
