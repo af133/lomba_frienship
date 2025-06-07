@@ -1,17 +1,341 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="/src/output.css" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/src/output.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet" />
+    <!-- Meta Tags for SEO -->
+    <meta name="description"
+        content="MoneyMood - Kelola Keuangan dan Mood Anda dengan Cerdas. Temukan cara baru untuk mengontrol pengeluaran berdasarkan suasana hati Anda!" />
+    <meta name="keywords"
+        content="MoneyMood, keuangan, mood, pengeluaran, kontrol, budgeting, finansial, ekonomi, psikologi keuangan" />
+    <meta name="author" content="MoneyMood Team" />
+
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta property="og:title" content="MoneyMood - Keuangan Sesuai Mood" />
+    <meta property="og:description"
+        content="Kelola keuangan dengan cara yang menyenangkan! MoneyMood memanfaatkan mood Anda untuk mengelola pengeluaran dan merencanakan masa depan yang lebih cerah." />
+    <meta property="og:image" content="assets/icons/money-mood.svg" />
+    <meta property="og:url" content="https://lomba-frienship.vercel.app/" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:title" content="MoneyMood - Keuangan Sesuai Mood" />
+    <meta name="twitter:description"
+        content="Kelola keuangan dengan cara yang menyenangkan! MoneyMood memanfaatkan mood Anda untuk mengelola pengeluaran dan merencanakan masa depan yang lebih cerah." />
+    <meta name="twitter:image" content="assets/logos/money-mood.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>MoneyMood - Cerdas Mengelola Keuangan Sesuai Suasana Hati</title>
+    <!-- Favicon for Browser Tab -->    
+    <link rel="icon" href="assets/icons/money-mood.svg" type="image/svg+xml" />
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.js" defer></script>
 </head>
-<body>
-    <div class="flex items-center justify-center min-h-screen bg-gray-100">
-        <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
-            <h1 class="text-2xl font-bold mb-4">Welcome to My App</h1>
-            <p class="text-gray-700 mb-6">This is a simple example of a responsive layout using Tailwind CSS.</p>
-            <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-200">Get Started</button>
+
+<body style="font-family: 'Inter', sans-serif">
+    <nav class="absolute left-1/2 transform -translate-x-1/2 top-10 bg-white shadow-lg z-50 px-6 py-2 rounded-full">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-8">
+            <div class="flex-shrink-0">
+                <img src="assets/logos/money-mood.svg" alt="Money Mood Logo" class="h-4 w-auto" />
+            </div>
+            <div class="flex gap-8">
+                <a href="#home" class="text-sm font-semibold text-[#34364A] hover:text-[#2447F9]">Home</a>
+                <a href="#feature" class="text-sm font-semibold text-[#34364A] hover:text-[#2447F9]">Feature</a>
+                <a href="#about-us" class="text-sm font-semibold text-[#34364A] hover:text-[#2447F9]">About Us</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="register.html"
+                    class="px-5 py-2 font-medium cursor-pointer text-[0.7rem] border-0 shadow-md text-[#34364A] rounded-full hover:border-[#2447F9] transition-all">
+                    Sign Up
+                </a>
+                <a href="login.html"
+                    class="px-5 py-2 font-medium cursor-pointer text-[0.7rem] bg-[#2447F9] text-white rounded-full hover:opacity-90 transition-all">
+                    Sign In
+                </a>
+            </div>
         </div>
-    </div>
+    </nav>
+
+    <section id="home"
+        class="mt-40 bg-linear-to-b from-[#FFFFFF] to-[#E7EBFF] h-170 flex flex-col items-center justify-between">
+        <div class="max-w-2xl mx-auto text-center">
+            <h1 class="text-[3.5rem] font-semibold text-[#34364A] mb-4 leading-tight">
+                Belanja nggak cuma soal
+                <span class="text-[#2447F9] font-bold">uang</span>, tapi juga soal
+                <span class="text-[#2447F9] font-bold italic">mood</span>
+            </h1>
+            <p class="text-xl text-[#34364A] mb-8 opacity-60">
+                MoneyMood bantu kamu lihat gimana mood mempengaruhi belanja,<br />biar
+                keuangan tetap under control!
+            </p>
+            <a href="login.html"
+                class="px-6 py-3 bg-[#2447F9] cursor-pointer text-white rounded-full hover:opacity-90 transition-all">
+                Get Started
+            </a>
+        </div>
+
+        <div class="mt-0 mb-0">
+            <img src="assets/photos/moneymood-overview.png" alt="Hero Illustration" class="w-full max-w-5xl mx-auto" />
+        </div>
+    </section>
+
+    <section id="feature" class="bg-white p-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="bg-white rounded-full flex items-center justify-center mb-4 mx-auto gap-2">
+                <img src="assets/icons/features.svg" alt="Features Icon" class="h-6 w-6 mr-2" />
+                <p class="text-[#34364A] font-semibold">Features</p>
+            </div>
+            <h2 class="text-4xl font-semibold text-[#34364A] mb-4 text-center leading-tight">
+                Lacak Pengeluaran, Capai
+                <span class="block">Tujuan, Hemat Lebih Cerdas</span>
+            </h2>
+            <p class="text-md text-center text-[#34364A] mb-8 opacity-60">
+                MoneyMood membantu melacak pengeluaran, tetapkan tujuan, dan bantu<br />hemat
+                dengan tips cerdas berdasarkan mood
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="bg-[#F7F7F7] p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold text-[#34364A] mb-2">
+                        Mood-Driven Spending Tracker
+                    </h3>
+                    <p class="text-[#34364A] opacity-60 text-sm">
+                        Lihat bagaimana moodmu mempengaruhi keputusan belanja. .
+                    </p>
+                    <img src="assets/photos/chart.png" alt="Chart Illustration" class="mt-4 w-full h-auto rounded-lg" />
+                </div>
+                <div class="bg-linear-to-b from-[#FFFFFF] to-[#E7EBFF] p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold text-[#34364A] mb-2">
+                        Goal Setting with Real-Time Progress
+                    </h3>
+                    <p class="text-[#34364A] opacity-60 text-sm">
+                        Atur tujuan keuanganmu dan lihat kemajuan setiap langkah yang kamu
+                        ambil.
+                    </p>
+                    <img src="assets/photos/goal-setting.png" alt="Goal Setting Illustration"
+                        class="mt-4 w-full h-auto rounded-lg" />
+                </div>
+                <div class="bg-[#F7F7F7] p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold text-[#34364A] mb-2">
+                        Transaction History and Financial Insights
+                    </h3>
+                    <p class="text-[#34364A] opacity-60 text-sm">
+                        Lihat riwayat pengeluaranmu dan terima rekomendasi untuk mengelola
+                        uang lebih baik
+                    </p>
+                    <img src="assets/photos/history-trx.png" alt="Transaction History Illustration"
+                        class="mt-4 w-full h-auto rounded-lg" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about-us" class="bg-white py-12 px-16">
+        <div class="max-w-7xl mx-auto px-6 bg-linear-to-b from-[#FFFFFF] to-[#E7EBFF] shadow-lg rounded-4xl">
+            <div class="bg-white mt-4 rounded-full flex items-center justify-center mb-8 mx-auto gap-2">
+                <img src="assets/icons/features.svg" alt="Features Icon" class="h-6 w-6 mr-2" />
+                <p class="text-[#34364A] font-semibold">About Us</p>
+            </div>
+            <h2 class="text-4xl max-w-3xl font-semibold mx-auto text-[#34364A] mb-4 text-center leading-tight">
+                Ubah Cara Kamu Mengelola
+                <span class="text-[#2447F9] font-bold italic">Uang</span> dengan
+                Menyesuaikan
+                <span class="text-[#2447F9] font-bold">Pengeluaran</span> Berdasarkan
+                <span class="text-[#2447F9] font-bold italic">Mood</span> dan Tujuan
+                Keuangan!
+            </h2>
+            <div class="mt-0 mb-0">
+                <img src="assets/photos/goal-setting-overview.png" alt="Hero Illustration"
+                    class="w-full max-w-5xl mx-auto" />
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-4xl mx-auto p-12">
+        <div class="bg-white mt-4 rounded-full flex items-center justify-center mb-8 mx-auto gap-2">
+            <img src="assets/icons/features.svg" alt="Features Icon" class="h-6 w-6 mr-2" />
+            <p class="text-[#34364A] font-semibold">FAQ</p>
+        </div>
+
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-semibold text-[#34364A] mb-4">
+                Frequently Asked Questions
+            </h2>
+            <p class="text-lg text-[#34364A] mt-2 opacity-60">
+                Temukan informasi lengkap dan jawaban tentang fitur, pengaturan,<span class="block">dan penggunaan
+                    MoneyMood.</span>
+            </p>
+        </div>
+
+        <div x-data="{ open: null }">
+            <div class="space-y-4">
+                <div @click="open !== 1 ? open = 1 : open = null"
+                    class="cursor-pointer flex items-center justify-between p-4 bg-white rounded-lg shadow-sm hover:bg-gray-50 transition">
+                    <p class="text-lg font-semibold text-[#34364A]">
+                        Apa itu MoneyMood?
+                    </p>
+                    <svg :class="{'rotate-180': open === 1}" class="w-6 h-6 transition-transform transform"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        stroke-width="2">
+                        <path d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                <div x-show="open === 1" x-transition class="px-4 pb-4 bg-gray-50 rounded-lg">
+                    <p class="text-gray-600">
+                        MoneyMood adalah aplikasi yang membantu Anda untuk mengelola
+                        pengeluaran berdasarkan suasana hati Anda. Dengan teknologi
+                        pengaturan keuangan yang cerdas, MoneyMood memberikan pengalaman
+                        keuangan yang lebih menyenangkan.
+                    </p>
+                </div>
+            </div>
+
+            <div class="space-y-4 mt-4">
+                <div @click="open !== 2 ? open = 2 : open = null"
+                    class="cursor-pointer flex items-center justify-between p-4 bg-white rounded-lg shadow-sm hover:bg-gray-50 transition">
+                    <p class="text-lg font-semibold text-[#34364A]">
+                        Bagaimana cara kerja Mood Tracker di MoneyMood?
+                    </p>
+                    <svg :class="{'rotate-180': open === 2}" class="w-6 h-6 transition-transform transform"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        stroke-width="2">
+                        <path d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                <div x-show="open === 2" x-transition class="px-4 pb-4 bg-gray-50 rounded-lg">
+                    <p class="text-gray-600">
+                        Mood Tracker di MoneyMood memungkinkan Anda untuk mencatat suasana
+                        hati harian Anda dan melacak bagaimana perasaan Anda mempengaruhi
+                        pengeluaran. Ini membantu Anda untuk membuat keputusan keuangan
+                        yang lebih baik.
+                    </p>
+                </div>
+            </div>
+
+            <div class="space-y-4 mt-4">
+                <div @click="open !== 3 ? open = 3 : open = null"
+                    class="cursor-pointer flex items-center justify-between p-4 bg-white rounded-lg shadow-sm hover:bg-gray-50 transition">
+                    <p class="text-lg font-semibold text-[#34364A]">
+                        Apakah saya perlu mendaftar untuk menggunakan MoneyMood?
+                    </p>
+                    <svg :class="{'rotate-180': open === 3}" class="w-6 h-6 transition-transform transform"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        stroke-width="2">
+                        <path d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                <div x-show="open === 3" x-transition class="px-4 pb-4 bg-gray-50 rounded-lg">
+                    <p class="text-gray-600">
+                        Ya, Anda perlu mendaftar untuk mulai menggunakan MoneyMood dan
+                        melacak keuangan Anda. Proses pendaftaran sangat mudah dan gratis.
+                    </p>
+                </div>
+            </div>
+
+            <div class="space-y-4 mt-4">
+                <div @click="open !== 4 ? open = 4 : open = null"
+                    class="cursor-pointer flex items-center justify-between p-4 bg-white rounded-lg shadow-sm hover:bg-gray-50 transition">
+                    <p class="text-lg font-semibold text-[#34364A]">
+                        Apa itu Goal Setting dan bagaimana cara menggunakannya?
+                    </p>
+                    <svg :class="{'rotate-180': open === 4}" class="w-6 h-6 transition-transform transform"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        stroke-width="2">
+                        <path d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                <div x-show="open === 4" x-transition class="px-4 pb-4 bg-gray-50 rounded-lg">
+                    <p class="text-gray-600">
+                        Goal Setting di MoneyMood membantu Anda merencanakan dan melacak
+                        tujuan keuangan Anda. Anda dapat menetapkan target pengeluaran dan
+                        memonitor progres Anda sesuai dengan mood dan anggaran.
+                    </p>
+                </div>
+            </div>
+
+            <div class="space-y-4 mt-4">
+                <div @click="open !== 5 ? open = 5 : open = null"
+                    class="cursor-pointer flex items-center justify-between p-4 bg-white rounded-lg shadow-sm hover:bg-gray-50 transition">
+                    <p class="text-lg font-semibold text-[#34364A]">
+                        Apakah MoneyMood gratis?
+                    </p>
+                    <svg :class="{'rotate-180': open === 5}" class="w-6 h-6 transition-transform transform"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        stroke-width="2">
+                        <path d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                <div x-show="open === 5" x-transition class="px-4 pb-4 bg-gray-50 rounded-lg">
+                    <p class="text-gray-600">
+                        Ya, MoneyMood dapat digunakan secara gratis dengan fitur dasar.
+                        Namun, ada juga pilihan langganan premium dengan fitur tambahan
+                        untuk pengalaman yang lebih lengkap.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-white p-12">
+        <div class="max-w-7xl mx-auto text-center">
+            <!-- Teks utama Footer -->
+            <div class="mb-8">
+                <h2 class="text-3xl font-semibold text-gray-800">
+                    Cerdas Mengelola Uang
+                </h2>
+                <p class="text-lg text-gray-500 mt-2">
+                    Pantau, analisis, dan capai tujuan keuangan dengan pengelolaan
+                    <br />yang lebih personal dan mudah.
+                </p>
+            </div>
+
+            <!-- Tombol Navigasi Footer -->
+            <div class="mb-12">
+                <a href="#home"
+                    class="px-6 py-3 text-[#34364A] bg-[#F7F9FB] hover:shadow-md rounded-full transition-all mr-4">Home</a>
+                <a href="#feature"
+                    class="px-6 py-3 text-[#34364A] bg-[#F7F9FB] hover:shadow-md rounded-full transition-all mr-4">Features</a>
+                <a href="#about-us"
+                    class="px-6 py-3 text-[#34364A] bg-[#F7F9FB] hover:shadow-md rounded-full transition-all mr-4">About
+                    Us</a>
+            </div>
+
+            <div class="flex items-center justify-between max-w-5xl mx-auto mt-12">
+                <!-- Logo -->
+                <div class="flex-shrink-0 mb-6">
+                    <img src="assets/logos/money-mood.svg" alt="Money Mood Logo" class="h-5 w-auto mx-auto" />
+                </div>
+                <!-- Copyright -->
+                <div class="text-sm text-gray-500">
+                    <p>© 2025. All Rights Reserved.</p>
+                </div>
+                <!-- Sosial Media -->
+                <div class="mb-6 flex justify-center space-x-6">
+                    <!-- Facebook -->
+                    <a href="#" class="hover:text-blue-700">
+                        <img src="assets/icons/facebook-svgrepo-com.svg" alt="Facebook Icon"
+                            class="w-6 h-6 text-gray-500 hover:text-blue-700" />
+                    </a>
+
+                    <!-- LinkedIn -->
+                    <a href="#" class="hover:text-blue-700">
+                        <img src="assets/icons/linkedin-svgrepo-com.svg" alt="LinkedIn Icon"
+                            class="w-6 h-6 text-gray-500 hover:text-blue-700" />                        
+                    </a>
+
+                    <!-- Twitter -->
+                    <a href="#" class="hover:text-blue-700">
+                        <img src="assets/icons/twitter-svgrepo-com.svg" alt="Twitter Icon"
+                            class="w-6 h-6 text-gray-500 hover:text-blue-700" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
 </body>
 </html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en" x-data="{ mobileMenuOpen: false, profileOpen: false }">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/src/output.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet" />
+    <!-- Meta Tags for SEO -->
+    <meta name="description"
+        content="MoneyMood - Kelola Keuangan dan Mood Anda dengan Cerdas. Temukan cara baru untuk mengontrol pengeluaran berdasarkan suasana hati Anda!" />
+    <meta name="keywords"
+        content="MoneyMood, keuangan, mood, pengeluaran, kontrol, budgeting, finansial, ekonomi, psikologi keuangan" />
+    <meta name="author" content="MoneyMood Team" />
+
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta property="og:title" content="MoneyMood - Keuangan Sesuai Mood" />
+    <meta property="og:description"
+        content="Kelola keuangan dengan cara yang menyenangkan! MoneyMood memanfaatkan mood Anda untuk mengelola pengeluaran dan merencanakan masa depan yang lebih cerah." />
+    <meta property="og:image" content="assets/icons/money-mood.svg" />
+    <meta property="og:url" content="https://lomba-frienship.vercel.app/" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:title" content="MoneyMood - Keuangan Sesuai Mood" />
+    <meta name="twitter:description"
+        content="Kelola keuangan dengan cara yang menyenangkan! MoneyMood memanfaatkan mood Anda untuk mengelola pengeluaran dan merencanakan masa depan yang lebih cerah." />
+    <meta name="twitter:image" content="assets/logos/money-mood.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Favicon for Browser Tab -->
+    <link rel="icon" href="assets/icons/money-mood.svg" type="image/svg+xml" />
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .progress-bar-bg {
+            background-color: #E5E7EB;
+            border-radius: 9999px;
+            height: 8px;
+        }
+        .progress-bar-fill {
+            background-color: #3B82F6;
+            border-radius: 9999px;
+            height: 8px;
+            transition: width 0.3s ease;
+        }
+        .gradient-blue {
+            background: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%);
+        }
+        .text-purple {
+            color: #8B5CF6;
+        }
+        .bg-purple-light {
+            background-color: #F3F4F6;
+        }
+        .progress-circle {
+            transform: rotate(-90deg);
+        }
+    </style>
+</head>
+
+<body style="font-family: 'Inter', sans-serif" class="text-[#34364A] bg-[#F6F8FD] ">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md rounded-b-2xl mb-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+
+        <!-- Logo -->
+        <div class="flex-shrink-0 flex items-center">
+          <img class="h-8 w-auto" src="asset/logo.png" alt="Logo" />
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="hidden sm:flex sm:items-center space-x-6">
+          <a href="dashboard.html" class="text-gray-800 hover:text-blue-600 font-medium">Dashboard</a>
+          <a href="mood_tracker.html" class="text-gray-800 hover:text-blue-600 font-medium">Mood Tracker</a>
+          <a href="goal_setting.html" class="text-gray-800 hover:text-blue-600 font-medium">Goal Setting</a>
+          <a href="history.html" class="text-gray-800 hover:text-blue-600 font-medium">History</a>
+        </div>
+
+        <!-- Profile (Desktop) -->
+        <div class="hidden sm:flex sm:items-center">
+          <div class="relative" x-data="{ profileOpen: false }">
+            <div class="flex items-center gap-x-2">
+
+                <button @click="profileOpen = !profileOpen" class="focus:outline-none">
+                    <img class="h-8 w-8 rounded-full" src="asset/profile.png" alt="Profile" />
+                </button>
+                <p>Hallo, Fauzul</p>
+                <button class="h-8 w-8 rounded-full"><a href=""><img src="asset/logout.png" alt="#"></a></button>
+            </div>
+            <div x-show="profileOpen" @click.outside="profileOpen = false" x-transition
+                 class="absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg py-2 z-50">
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Your Profile</a>
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
+              <a href="index.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hamburger (Mobile) -->
+        <div class="sm:hidden flex items-center">
+          <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-gray-600 focus:outline-none">
+            <svg x-show="!mobileMenuOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+              viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg x-show="mobileMenuOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+              viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div x-show="mobileMenuOpen" x-transition x-cloak class="sm:hidden px-4 pt-2 pb-4 space-y-2">
+      <a href="dashboard.html" class="block text-gray-800 hover:text-blue-600 font-medium">Dashboard</a>
+      <a href="mood_tracker.html" class="block text-gray-800 hover:text-blue-600 font-medium">Mood Tracker</a>
+      <a href="goal_setting.html" class="block text-gray-800 hover:text-blue-600 font-medium">Goal Setting</a>
+      <a href="history.html" class="block text-gray-800 hover:text-blue-600 font-medium">History</a>
+      <hr class="border-gray-200" />
+      <a href="#" class="block text-gray-800 hover:text-blue-600 font-medium">Your Profile</a>
+      <a href="#" class="block text-gray-800 hover:text-blue-600 font-medium">Settings</a>
+      <a href="index.html" class="block text-gray-800 hover:text-blue-600 font-medium">Sign out</a>
+    </div>
+  </nav>
+    <div class="max-w-6xl mx-auto">
+        <!-- Header Section -->
+        <div class="flex items-start justify-between mb-10">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-900 mb-3">Tetapkan Tujuan dan Raih Impianmu!</h1>
+                <p class="text-gray-500 text-base leading-relaxed">Lihat progres tabunganmu dan capai tujuan lebih cepat dengan setiap langkah kecil</p>
+            </div>
+            <a href="form_bikin_goal_tabungan.html">
+                <button id="setGoalBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-medium text-sm transition-colors whitespace-nowrap">
+                    Tetapkan Tujuan
+                </button>
+            </a>
+        </div>
+
+        <!-- Main Content -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Goals List - Left Side (2 columns) -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Liburan ke Paris -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-1">Liburan ke Paris</h3>
+                            <p class="text-sm text-gray-500">Durasi 1 Bulan</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-2xl font-bold text-gray-900 mb-1">65%</div>
+                            <div class="text-xs text-gray-500">Rp1.200.000 / 2.000.000</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-5 ">
+                        <div class="progress-bar-bg h-3">
+                            <div class="progress-bar-fill h-3" style="width: 65%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between">
+                        <p class="text-sm text-blue-600 font-medium">20 Hari Lagi! <span class="text-black">Yuk tabung sekarang</span> </p>
+                        <a href="form_setor_tabungan.html">
+                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                                Yuk Nabung
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Samsung S23 -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-1">Samsung S23</h3>
+                            <p class="text-sm text-gray-500">Durasi 2 Bulan</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-2xl font-bold text-gray-900 mb-1">16%</div>
+                            <div class="text-xs text-gray-500">Rp1.200.000 / 7.500.000</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-5">
+                        <div class="progress-bar-bg h-3" >
+                            <div class="progress-bar-fill h-3" style="width: 16%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between">
+                        <p class="text-sm text-blue-600 font-medium">40 Hari Lagi!  <span class="text-black">Yuk tabung sekarang</span> </p>
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                            Yuk Nabung
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Macbook Pro -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-1">Macbook Pro</h3>
+                            <p class="text-sm text-gray-500">Durasi 3 Bulan</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-2xl font-bold text-gray-900 mb-1">55%</div>
+                            <div class="text-xs text-gray-500">Rp8.000.000 / 38.000.000</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-5">
+                        <div class="progress-bar-bg h-3">
+                            <div class="progress-bar-fill h-3" style="width: 55%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between">
+                        <p class="text-sm text-blue-600 font-medium">60 Hari Lagi!  <span class="text-black">Yuk tabung sekarang</span> </p>
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                            Yuk Nabung
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Statistics Card - Right Side -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                <div class="mb-8">
+                    <p class="text-xs text-gray-400 mb-1">Statistics</p>
+                    <h3 class="text-lg font-semibold text-gray-900">Progress Terbaru Anda</h3>
+                </div>
+                
+                <div class="flex items-center justify-center mb-8">
+                    <div class="relative">
+                        <canvas id="progressChart" width="200" height="200"></canvas>
+                        <div class="absolute inset-0 flex flex-col items-center justify-center">
+                            <p class="text-sm text-gray-600 mb-1">Membeli Laptop ROG</p>
+                            <p class="text-2xl font-bold text-gray-900">Rp12.500.000</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        <span class="font-semibold text-blue-600">Rp3.500.000,00</span> lagi<br>
+                        menuju tujuan impianmu
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Initialize circular progress chart
+            const ctx = document.getElementById('progressChart').getContext('2d');
+            
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    datasets: [{
+                        data: [78, 22], // 78% progress (12.5M out of 16M total)
+                        backgroundColor: [
+                            '#3B82F6', // Blue for progress
+                            '#E5E7EB'  // Light gray for remaining
+                        ],
+                        borderWidth: 0,
+                        cutout: '70%'
+                    }]
+                },
+                options: {
+                    responsive: false,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            enabled: false
+                        }
+                    },
+                    elements: {
+                        arc: {
+                            borderWidth: 0
+                        }
+                    }
+                }
+            });
+
+      
+
+            // Yuk Nabung button click handlers
+            $('.bg-blue-600:contains("Yuk Nabung")').click(function() {
+                const goalCard = $(this).closest('.bg-white');
+                const goalName = goalCard.find('h3').text();
+                
+                // Show confirmation
+                if (confirm(`Tambah tabungan untuk ${goalName}?`)) {
+                    // Simulate adding savings
+                    const progressBar = goalCard.find('.progress-bar-fill');
+                    const percentageElement = goalCard.find('.text-2xl.font-bold');
+                    
+                    let currentWidth = parseInt(progressBar.css('width'));
+                    let currentPercentage = parseInt(percentageElement.text());
+                    
+                    // Increase by 5%
+                    let newPercentage = Math.min(currentPercentage + 5, 100);
+                    let newWidth = newPercentage + '%';
+                    
+                    // Animate progress bar
+                    progressBar.animate({
+                        width: newWidth
+                    }, 500);
+                    
+                    // Update percentage text
+                    percentageElement.text(newPercentage + '%');
+                    
+                    // Show success message
+                    setTimeout(() => {
+                        alert(`Berhasil menambah tabungan! Progress ${goalName} sekarang ${newPercentage}%`);
+                    }, 600);
+                }
+            });
+
+            // Add hover effects
+            $('.bg-white').hover(
+                function() {
+                    $(this).addClass('shadow-md').removeClass('shadow-sm');
+                },
+                function() {
+                    $(this).addClass('shadow-sm').removeClass('shadow-md');
+                }
+            );
+
+            // Animate progress bars on page load
+            $('.progress-bar-fill').each(function() {
+                const targetWidth = $(this).css('width');
+                $(this).css('width', '0%');
+                $(this).animate({
+                    width: targetWidth
+                }, 1200);
+            });
+        });
+    </script>
+</body>
+</html>

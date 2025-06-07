@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+<<<<<<< HEAD
     "dev": "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch",
+=======
+    "dev" : "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch",
+>>>>>>> aaf9d988aa227e6be49c405a5d0e83f32b99d340
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,8 +24,11 @@
   },
   "homepage": "https://github.com/af133/lomba_frienship#readme",
   "dependencies": {
+<<<<<<< HEAD
     "@headlessui/react": "^2.2.4",
     "@heroicons/react": "^2.2.0",
+=======
+>>>>>>> aaf9d988aa227e6be49c405a5d0e83f32b99d340
     "@tailwindcss/cli": "^4.1.8",
     "tailwindcss": "^4.1.8"
   }
